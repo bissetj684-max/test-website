@@ -1,0 +1,391 @@
+/* ===== Zmienne i motyw ===== */
+:root {
+  --bg: #f3ead6;
+  --surface: #e9dcc0;
+  --ink: #2b2019;
+  --muted: #6b5a4a;
+  --accent: #8a3b2a;
+  --line: #c9b790;
+  --head: "Rozha One", "Playfair Display", Georgia, serif;
+  --body: "Lora", Georgia, serif;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #2a211c;
+    --surface: #352a23;
+    --ink: #efe3c4;
+    --muted: #b9a789;
+    --accent: #d9b86c;
+    --line: #5a4a3b;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #2a211c;
+  --surface: #352a23;
+  --ink: #efe3c4;
+  --muted: #b9a789;
+  --accent: #d9b86c;
+  --line: #5a4a3b;
+}
+
+/* ===== Baza ===== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 70px);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 17px/1.7 var(--body);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: #1a130f;
+  z-index: 10;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ===== Nagłówek / nawigacja ===== */
+header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 9;
+  background: #1a130f;
+  border-bottom: 1px solid #3a2d24;
+}
+
+nav {
+  max-width: 1000px;
+  margin: auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: block;
+  line-height: 0;
+}
+
+.logo img {
+  display: block;
+  height: 35px;
+  width: auto;
+}
+
+nav ul {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: #efe3c4;
+}
+
+nav ul a:hover { color: #d9b86c; }
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #2a211c;
+  color: #efe3c4;
+  text-align: center;
+  padding: 70px 20px 90px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero h1 {
+  font-family: var(--head);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 12vw, 7rem);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: .03em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .6);
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .4;
+}
+
+.hero > *:not(.hero-img) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  max-width: 520px;
+  margin: 26px auto 30px;
+  color: #efe3c4;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .6);
+}
+
+/* Logo w hero (przełączane kliknięciem) */
+.logo-toggle {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.hero-logo img {
+  display: block;
+  width: min(440px, 76%);
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .55));
+}
+
+.hero-logo img.logo-alt { width: min(400px, 72%); }
+
+.hero-logo img[hidden] { display: none; }
+
+/* ===== Przyciski ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.btn.alt {
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  margin-left: 8px;
+}
+
+.hero .btn {
+  background: #d9b86c;
+  color: #2a211c;
+}
+
+.hero .btn.alt {
+  background: rgba(42, 33, 28, .6);
+  color: #efe3c4;
+  border: 1px solid #efe3c4;
+}
+
+/* ===== Sekcje ===== */
+section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+h2 {
+  font-family: var(--head);
+  font-weight: 400;
+  font-size: 2.2rem;
+  margin: 0 0 24px;
+}
+
+/* ===== O nas ===== */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.about p { margin: 0 0 14px; }
+
+.facts {
+  list-style: none;
+  margin: 0;
+  padding: 22px 24px;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+}
+
+.facts li {
+  position: relative;
+  padding: 6px 0 6px 34px;
+}
+
+.facts li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 22px;
+  height: 23px;
+  transform: translateY(-50%);
+  background: url("../assets/img/ikona-kalina.svg") center / contain no-repeat;
+}
+
+/* ===== Menu ===== */
+/* Pas na pełną szerokość, w kolorach nagłówka (zawsze ciemny) */
+section.band {
+  max-width: none;
+  padding: 0;
+  background: #1a130f;
+  border-top: 1px solid #3a2d24;
+  border-bottom: 1px solid #3a2d24;
+  color: #efe3c4;
+
+  --ink: #efe3c4;
+  --muted: #b9a789;
+  --accent: #d9b86c;
+  --line: #5a4a3b;
+}
+
+.band-inner {
+  max-width: 1000px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs button {
+  font: inherit;
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.tabs button[aria-selected="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+.panel[hidden] { display: none; }
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 20px;
+  padding: 14px 0;
+  border-bottom: 1px dotted var(--line);
+}
+
+.item b { font-weight: 600; }
+
+.item span {
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.item small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.4;
+}
+
+.note {
+  color: var(--muted);
+  font-size: .9rem;
+  margin-top: 18px;
+}
+
+/* ===== Kontakt ===== */
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--line);
+}
+
+td:last-child { text-align: right; }
+
+.map {
+  margin-top: 40px;
+  padding: 60px 20px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  color: var(--muted);
+}
+
+/* ===== Stopka ===== */
+footer {
+  border-top: 1px solid var(--line);
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+/* ===== Responsywność ===== */
+@media (max-width: 720px) {
+  .about,
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  nav ul {
+    gap: 14px;
+    font-size: .95rem;
+  }
+
+  .btn.alt { margin: 10px 0 0; }
+
+  .hero { padding: 50px 20px 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
